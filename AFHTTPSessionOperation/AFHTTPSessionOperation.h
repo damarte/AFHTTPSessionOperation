@@ -6,6 +6,7 @@
 //
 
 #import "ConcurrentOperation.h"
+#import "AFNetworking.h"
 
 @class AFHTTPSessionManager;
 
@@ -17,6 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
                                        method:(NSString *)method
                                     URLString:(NSString *)URLString
                                    parameters:(nullable id)parameters
+                                      success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                      failure:(nullable void (^)(NSURLSessionDataTask *task, NSError * error))failure;
+
++ (nullable instancetype)operationWithManager:(AFHTTPSessionManager *)manager
+                                       method:(NSString *)method
+                                    URLString:(NSString *)URLString
+                                   parameters:(nullable id)parameters
+                    constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))body
                                       success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
                                       failure:(nullable void (^)(NSURLSessionDataTask *task, NSError * error))failure;
 
